@@ -1,4 +1,5 @@
-import { withAbortSignal, AbortError } from '@src/with-abort-signal'
+import { withAbortSignal } from '@src/with-abort-signal'
+import { AbortError } from '@src/abort-error'
 import { AbortController } from 'abort-controller'
 import { getErrorPromise } from 'return-style'
 

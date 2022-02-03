@@ -1,4 +1,5 @@
 export * from './abort-controller'
+export * from './abort-error'
 export * from './abort-signal'
 export * from './race-abort-signals'
 export * from './timeout-signal'

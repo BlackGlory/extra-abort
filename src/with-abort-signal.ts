@@ -1,4 +1,4 @@
-import { CustomError } from '@blackglory/errors'
+import { AbortError } from './abort-error'
 
 /**
  * @throws {AbortError} 
@@ -24,5 +24,3 @@ export async function withAbortSignal<T>(
     }
   })
 }
-
-export class AbortError extends CustomError {}

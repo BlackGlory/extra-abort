@@ -10,6 +10,14 @@ yarn add extra-abort
 ### AbortController, AbortSignal
 Ponyfills of WHATWG AbortController and AbortSignal.
 
+### AbortError
+```ts
+class AbortError extends CustomError {}
+```
+
+It is not the real `AbortError` of `fetch`,
+but you can do `err instance AbortError` like it is.
+
 ### timeoutSignal
 ```ts
 function timeoutSignal(ms: number): AbortSignal
@@ -23,12 +31,13 @@ await fetch('http://example.com', { signal: timeoutSignal(5000) })
 
 ### withAbortSignal
 ```ts
+/**
+ * @throws {AbortError} 
+ */
 function withAbortSignal<T>(signal: AbortSignal, fn: () => PromiseLike<T>): Promise<T>
 ```
 
 If `AbortSignal` is aborted, the promise will be rejected with `AbortError`.
-
-Note: `AbortError` is a custom error, not the `AbortError` of `fetch`.
 
 ### raceAbortSignals
 ```ts
