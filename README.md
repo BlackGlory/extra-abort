@@ -16,7 +16,8 @@ class AbortError extends CustomError {}
 ```
 
 It is not the real `AbortError` of `fetch`,
-but you can do `err instance AbortError` like it is.
+but you can do `err instance AbortError` like it is,
+because it can recognizes other errors that match the pattern of `AbortError`.
 
 ### timeoutSignal
 ```ts
