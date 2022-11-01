@@ -8,7 +8,7 @@ yarn add extra-abort
 
 ## API
 ### AbortController, AbortSignal
-Ponyfills of WHATWG AbortController and AbortSignal.
+The ponyfills of WHATWG `AbortController` and `AbortSignal`.
 
 ### AbortError
 ```ts

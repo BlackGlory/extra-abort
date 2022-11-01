@@ -1,12 +1,18 @@
 import { getErrorNames, CustomError } from '@blackglory/errors'
 import { isError } from '@blackglory/types'
-import { some } from 'iterable-operator'
+import { toArray } from 'iterable-operator'
 
 export class AbortError extends CustomError {
   static [Symbol.hasInstance](instance: unknown): boolean {
     if (isError(instance)) {
-      return some(getErrorNames(instance), name => name === 'AbortError')
+      const names = toArray(getErrorNames(instance))
+      return names.includes('AbortError')
+          || (
+               names.includes('DOMException') &&
+               instance.message === 'This operation was aborted'
+             )
     }
+
     return super[Symbol.hasInstance](instance)
   }
 }
