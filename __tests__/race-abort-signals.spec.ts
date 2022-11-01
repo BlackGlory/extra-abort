@@ -1,8 +1,8 @@
 import { raceAbortSignals } from '@src/race-abort-signals'
-import { AbortController } from 'abort-controller'
+import { AbortController } from '@src/abort-controller'
 
-describe('raceAbortSignals(abortSignals: Array<AbortSignal | Falsy>): AbortSignal ', () => {
-  it('return an AbortSignal', () => {
+describe('raceAbortSignals', () => {
+  it('returns an AbortSignal', () => {
     const controller = new AbortController()
 
     const result = raceAbortSignals([controller.signal])
@@ -15,7 +15,7 @@ describe('raceAbortSignals(abortSignals: Array<AbortSignal | Falsy>): AbortSigna
   })
 
   describe('edge: a signal has been aborted', () => {
-    it('return an aborted AbortSignal', () => {
+    it('returns an aborted AbortSignal', () => {
       const controller = new AbortController()
       controller.abort()
 

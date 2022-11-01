@@ -2,13 +2,13 @@ import * as target from '@src/index'
 
 test('exports', () => {
   const expectedExports: string[] = [
-    'withAbortSignal'
-  , 'raceAbortSignals'
-  , 'timeoutSignal'
-
-  , 'AbortError'
+    'AbortError'
   , 'AbortController'
   , 'AbortSignal'
+
+  , 'withAbortSignal'
+  , 'raceAbortSignals'
+  , 'timeoutSignal'
   ].sort()
 
   const actualExports = Object.keys(target).sort()

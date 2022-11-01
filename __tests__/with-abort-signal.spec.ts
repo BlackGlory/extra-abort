@@ -1,11 +1,11 @@
 import { withAbortSignal } from '@src/with-abort-signal'
+import { AbortController } from '@src/abort-controller'
 import { AbortError } from '@src/abort-error'
-import { AbortController } from 'abort-controller'
 import { getErrorPromise } from 'return-style'
 
-describe('withAbortSignal<T>(signal: AbortSignal, fn: () => PromiseLike<T>): Promise<T> ', () => {
+describe('withAbortSignal', () => {
   describe('signal already aborted', () => {
-    it('throw AbortError and fn is not called', async () => {
+    it('throws AbortError and fn is not called', async () => {
       const fn = jest.fn()
       const controller = new AbortController()
       controller.abort()
@@ -18,7 +18,7 @@ describe('withAbortSignal<T>(signal: AbortSignal, fn: () => PromiseLike<T>): Pro
   })
 
   describe('signal is aborted after promise is resolved', () => {
-    it('return promise result', async () => {
+    it('returns promise result', async () => {
       const value = 1
       const fn = () => Promise.resolve(value)
       const controller = new AbortController()
@@ -31,7 +31,7 @@ describe('withAbortSignal<T>(signal: AbortSignal, fn: () => PromiseLike<T>): Pro
   })
 
   describe('signal is aborted after promise is rejected', () => {
-    it('return promise result', async () => {
+    it('returns promise result', async () => {
       const customError = new Error('custom error')
       const fn = () => Promise.reject(customError)
       const controller = new AbortController()
@@ -44,7 +44,7 @@ describe('withAbortSignal<T>(signal: AbortSignal, fn: () => PromiseLike<T>): Pro
   })
 
   describe('signal is aborted before promise is resolved', () => {
-    it('throw AbortError and fn is called', async () => {
+    it('throws AbortError and fn is called', async () => {
       const fn = jest.fn(() => new Promise(resolve => setTimeout(resolve, 1000)))
       const controller = new AbortController()
 
@@ -57,7 +57,7 @@ describe('withAbortSignal<T>(signal: AbortSignal, fn: () => PromiseLike<T>): Pro
   })
 
   describe('signal is aborted after promise is rejected', () => {
-    it('throw AbortError and fn is called', async () => {
+    it('throws AbortError and fn is called', async () => {
       const customError = new Error('custom error')
       const fn = jest.fn(() => new Promise((_, reject) => reject(customError)))
       const controller = new AbortController()
