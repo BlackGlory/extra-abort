@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/BlackGlory/extra-abort/compare/v0.1.4...v0.2.0) (2022-11-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* The minimal version of Node.js is v16
+
+* improve `AbortError`, replace objects with native objects ([f25c09a](https://github.com/BlackGlory/extra-abort/commit/f25c09a372a17ff7b09f2bb1018fe324a3ad2226))
+
 ### [0.1.4](https://github.com/BlackGlory/extra-abort/compare/v0.1.3...v0.1.4) (2022-10-21)
 
 ### [0.1.3](https://github.com/BlackGlory/extra-abort/compare/v0.1.2...v0.1.3) (2022-08-01)
