@@ -55,7 +55,7 @@
   "dependencies": {
     "@blackglory/errors": "^2.2.3",
     "@blackglory/types": "^1.4.0",
-    "iterable-operator": "^2.1.0",
+    "iterable-operator": "^2.1.0 || ^3.0.0",
     "justypes": "^3.0.0"
   }
 }
