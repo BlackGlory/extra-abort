@@ -1,9 +1,11 @@
 {
   "name": "extra-abort",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "",
   "keywords": [],
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "repository": "git@github.com:BlackGlory/extra-abort.git",
