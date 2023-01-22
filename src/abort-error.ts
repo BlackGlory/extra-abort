@@ -1,6 +1,6 @@
 import { getErrorNames, CustomError } from '@blackglory/errors'
 import { isError } from '@blackglory/types'
-import { toArray } from 'iterable-operator'
+import { toArray } from './utils'
 
 export class AbortError extends CustomError {
   static [Symbol.hasInstance](instance: unknown): boolean {
