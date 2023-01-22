@@ -56,7 +56,6 @@
   },
   "dependencies": {
     "@blackglory/errors": "^2.4.3",
-    "@blackglory/types": "^1.4.0",
     "iterable-operator": "^4.0.1",
     "justypes": "^4.1.0"
   }

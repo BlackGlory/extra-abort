@@ -1,5 +1,4 @@
-import { getErrorNames, CustomError } from '@blackglory/errors'
-import { isError } from '@blackglory/types'
+import { getErrorNames, CustomError, isError } from '@blackglory/errors'
 import { toArray } from 'iterable-operator'
 
 export class AbortError extends CustomError {
