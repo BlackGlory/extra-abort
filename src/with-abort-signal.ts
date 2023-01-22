@@ -1,4 +1,4 @@
-import { AbortError } from './abort-error'
+import { AbortError } from './abort-error.js'
 
 /**
  * @throws {AbortError} 

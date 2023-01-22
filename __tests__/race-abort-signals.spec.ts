@@ -1,5 +1,5 @@
-import { raceAbortSignals } from '@src/race-abort-signals'
-import { AbortController } from '@src/abort-controller'
+import { raceAbortSignals } from '@src/race-abort-signals.js'
+import { AbortController } from '@src/abort-controller.js'
 
 describe('raceAbortSignals', () => {
   it('returns an AbortSignal', () => {

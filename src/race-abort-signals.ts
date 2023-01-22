@@ -1,5 +1,5 @@
 import { Falsy } from 'justypes'
-import { AbortController } from './abort-controller'
+import { AbortController } from './abort-controller.js'
 
 export function raceAbortSignals(abortSignals: Array<AbortSignal | Falsy>): AbortSignal {
   const controller = new AbortController()

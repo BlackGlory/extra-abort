@@ -1,12 +1,13 @@
-import { withAbortSignal } from '@src/with-abort-signal'
-import { AbortController } from '@src/abort-controller'
-import { AbortError } from '@src/abort-error'
+import { withAbortSignal } from '@src/with-abort-signal.js'
+import { AbortController } from '@src/abort-controller.js'
+import { AbortError } from '@src/abort-error.js'
 import { getErrorPromise } from 'return-style'
+import { passAsync } from '@blackglory/pass'
 
 describe('withAbortSignal', () => {
   describe('signal already aborted', () => {
     it('throws AbortError and fn is not called', async () => {
-      const fn = jest.fn()
+      const fn = vi.fn(passAsync)
       const controller = new AbortController()
       controller.abort()
 
@@ -45,7 +46,7 @@ describe('withAbortSignal', () => {
 
   describe('signal is aborted before promise is resolved', () => {
     it('throws AbortError and fn is called', async () => {
-      const fn = jest.fn(() => new Promise(resolve => setTimeout(resolve, 1000)))
+      const fn = vi.fn(() => new Promise(resolve => setTimeout(resolve, 1000)))
       const controller = new AbortController()
 
       setTimeout(() => controller.abort(), 500)
@@ -59,7 +60,7 @@ describe('withAbortSignal', () => {
   describe('signal is aborted after promise is rejected', () => {
     it('throws AbortError and fn is called', async () => {
       const customError = new Error('custom error')
-      const fn = jest.fn(() => new Promise((_, reject) => reject(customError)))
+      const fn = vi.fn(() => new Promise((_, reject) => reject(customError)))
       const controller = new AbortController()
 
       setTimeout(() => controller.abort(), 500)

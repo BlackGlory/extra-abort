@@ -1,4 +1,4 @@
-import { AbortController } from '@src/abort-controller'
+import { AbortController } from '@src/abort-controller.js'
 
 describe('AbortController', () => {
   describe('abort', () => {

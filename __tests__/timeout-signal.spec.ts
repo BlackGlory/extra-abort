@@ -1,6 +1,6 @@
-import { AbortSignal } from '@src/abort-signal'
-import { timeoutSignal } from '@src/timeout-signal'
-import { TIME_ERROR } from '@test/utils'
+import { AbortSignal } from '@src/abort-signal.js'
+import { timeoutSignal } from '@src/timeout-signal.js'
+import { TIME_ERROR } from '@test/utils.js'
 import { waitForEventTarget } from '@blackglory/wait-for'
 
 describe('timeoutSignal', () => {

@@ -1,6 +1,6 @@
-import { AbortController } from '@src/abort-controller'
+import { AbortController } from '@src/abort-controller.js'
 import { getError } from 'return-style'
-import { AbortError } from '@src/abort-error'
+import { AbortError } from '@src/abort-error.js'
 
 describe('AbortSignal', () => {
   describe('throwIfAborted', () => {
@@ -49,7 +49,7 @@ describe('AbortSignal', () => {
     test('aborted', () => {
       const controller = new AbortController()
       const signal = controller.signal
-      const handler = jest.fn()
+      const handler = vi.fn()
 
       signal.addEventListener('abort', handler)
       controller.abort()
@@ -60,7 +60,7 @@ describe('AbortSignal', () => {
     test('not aborted', () => {
       const controller = new AbortController()
       const signal = controller.signal
-      const handler = jest.fn()
+      const handler = vi.fn()
 
       signal.addEventListener('abort', handler)
 

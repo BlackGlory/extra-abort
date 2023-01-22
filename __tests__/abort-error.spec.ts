@@ -1,7 +1,7 @@
 import { CustomError } from '@blackglory/errors'
-import { AbortError } from '@src/abort-error'
-import { AbortController } from '@src/abort-controller'
-import { AbortError as AbortErrorFromExtraFetch } from 'extra-fetch'
+import { AbortError } from '@src/abort-error.js'
+import { AbortController } from '@src/abort-controller.js'
+import { AbortError as AbortErrorFromExtraFetch } from 'node-fetch'
 import { getError } from 'return-style'
 
 describe('AbortError', () => {
