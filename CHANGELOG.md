@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.2](https://github.com/BlackGlory/extra-abort/compare/v0.3.1...v0.3.2) (2023-03-09)
+
+
+### Features
+
+* add `LinkedAbortController` ([fb83e55](https://github.com/BlackGlory/extra-abort/commit/fb83e55a690fdd5d9d8ae29e5c614a7d2b1f2b31))
+
 ### [0.3.1](https://github.com/BlackGlory/extra-abort/compare/v0.3.0...v0.3.1) (2023-01-22)
 
 ## [0.3.0](https://github.com/BlackGlory/extra-abort/compare/v0.2.1...v0.3.0) (2023-01-22)
