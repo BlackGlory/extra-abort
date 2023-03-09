@@ -19,6 +19,17 @@ It is not the real `AbortError` of `fetch`,
 but you can do `err instance AbortError` like it is,
 because it can recognizes other errors that match the pattern of `AbortError`.
 
+### LinkedAbortController
+```ts
+class LinkedAbortController extends AbortController {
+  constructor(abortSignal: AbortSignal)
+}
+```
+
+It is a special `AbortController` that takes an `AbortSignal` as a parameter.
+It will abort itself when its parameter signal aborts,
+you can make it abort by calling its `abort` method too.
+
 ### timeoutSignal
 ```ts
 function timeoutSignal(ms: number): AbortSignal

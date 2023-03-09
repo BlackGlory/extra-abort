@@ -6,6 +6,8 @@ test('exports', () => {
   , 'AbortController'
   , 'AbortSignal'
 
+  , 'LinkedAbortController'
+
   , 'withAbortSignal'
   , 'raceAbortSignals'
   , 'timeoutSignal'
