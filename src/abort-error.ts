@@ -8,7 +8,11 @@ export class AbortError extends CustomError {
       return names.includes('AbortError')
           || (
                names.includes('DOMException') &&
-               instance.message === 'This operation was aborted'
+               (
+                 instance.message === 'This operation was aborted' // browser
+                 ||
+                 instance.message === 'The signal has been aborted' // deno
+               )
              )
     }
 
