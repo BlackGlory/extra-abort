@@ -57,3 +57,8 @@ function raceAbortSignals(abortSignals: Array<AbortSignal | Falsy>): AbortSignal
 ```
 
 The `Promise.race` function for `AbortSignal`.
+
+### isAbortSignal
+```ts
+function isAbortSignal(val: unknown): val is AbortSignal
+```

@@ -11,6 +11,7 @@ test('exports', () => {
   , 'withAbortSignal'
   , 'raceAbortSignals'
   , 'timeoutSignal'
+  , 'isAbortSignal'
   ].sort()
 
   const actualExports = Object.keys(target).sort()
