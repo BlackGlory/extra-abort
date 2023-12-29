@@ -44,9 +44,9 @@ await fetch('http://example.com', { signal: timeoutSignal(5000) })
 ### withAbortSignal
 ```ts
 /**
- * @throws {AbortError} 
+ * @throws {AbortError}
  */
-function withAbortSignal<T>(signal: AbortSignal, fn: () => PromiseLike<T>): Promise<T>
+function withAbortSignal<T>(signal: AbortSignal | Falsy, fn: () => PromiseLike<T>): Promise<T>
 ```
 
 If `AbortSignal` is aborted, the promise will be rejected with `AbortError`.
