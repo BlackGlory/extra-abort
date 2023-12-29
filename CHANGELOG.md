@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.8](https://github.com/BlackGlory/extra-abort/compare/v0.3.7...v0.3.8) (2023-12-29)
+
+
+### Features
+
+* **withAbortSignal:** allow signal to be falsy ([c9cb054](https://github.com/BlackGlory/extra-abort/commit/c9cb0545690cf82d0eebc49ecb58ee131bf9dee6))
+
 ### [0.3.7](https://github.com/BlackGlory/extra-abort/compare/v0.3.6...v0.3.7) (2023-06-10)
 
 
