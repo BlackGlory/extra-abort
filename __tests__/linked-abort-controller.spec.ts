@@ -1,3 +1,4 @@
+import { describe, test, expect } from 'vitest'
 import { LinkedAbortController } from '@src/linked-abort-controller.js'
 import { AbortController } from '@src/abort-controller.js'
 

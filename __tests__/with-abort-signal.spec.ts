@@ -1,3 +1,4 @@
+import { describe, test, it, expect, vi } from 'vitest'
 import { withAbortSignal } from '@src/with-abort-signal.js'
 import { AbortController } from '@src/abort-controller.js'
 import { AbortError } from '@src/abort-error.js'

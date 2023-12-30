@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest'
 import { raceAbortSignals } from '@src/race-abort-signals.js'
 import { AbortController } from '@src/abort-controller.js'
 

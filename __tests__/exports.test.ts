@@ -1,3 +1,4 @@
+import { test, expect } from 'vitest'
 import * as target from '@src/index.js'
 
 test('exports', () => {
@@ -13,6 +14,7 @@ test('exports', () => {
   , 'timeoutSignal'
   , 'isAbortSignal'
   , 'isntAbortSignal'
+  , 'lastCallOnly'
   ].sort()
 
   const actualExports = Object.keys(target).sort()

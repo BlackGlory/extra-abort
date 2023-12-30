@@ -1,14 +1,14 @@
 import { AbortController } from './abort-controller.js'
 
 export class LinkedAbortController extends AbortController {
-  constructor(abortSignal: AbortSignal) {
+  constructor(signal: AbortSignal) {
     super()
 
-    if (abortSignal.aborted) {
-      this.abort(abortSignal.reason)
+    if (signal.aborted) {
+      this.abort(signal.reason)
     } else {
-      abortSignal.addEventListener('abort', () => {
-        this.abort(abortSignal.reason)
+      signal.addEventListener('abort', () => {
+        this.abort(signal.reason)
       }, { once: true })
     }
   }

@@ -60,6 +60,14 @@
     extra-timers "^0.2.5"
     justypes "^2.0.0"
 
+"@blackglory/go@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@blackglory/go/-/go-1.1.3.tgz#50ebf5c3001b1113959221a08045de8a6f27d80a"
+  integrity sha512-BbxKpUxf/mtBzPYrC18YxpRicp8cL85PGJQndO6suS+hgf3NZ69VN7mciv7BQdjVNHW8tbM5+E4OZv100yVHCA==
+  dependencies:
+    extra-timers "^0.2.5"
+    justypes "^2.0.0"
+
 "@blackglory/log@^1.3.3":
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/@blackglory/log/-/log-1.3.5.tgz#c20ec27d7b856565a68346c4c1ca4f2823c32a48"

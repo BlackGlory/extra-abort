@@ -22,7 +22,7 @@ because it can recognizes other errors that match the pattern of `AbortError`.
 ### LinkedAbortController
 ```ts
 class LinkedAbortController extends AbortController {
-  constructor(abortSignal: AbortSignal)
+  constructor(signal: AbortSignal)
 }
 ```
 
@@ -53,7 +53,7 @@ If `AbortSignal` is aborted, the promise will be rejected with `AbortError`.
 
 ### raceAbortSignals
 ```ts
-function raceAbortSignals(abortSignals: Array<AbortSignal | Falsy>): AbortSignal
+function raceAbortSignals(signals: Array<AbortSignal | Falsy>): AbortSignal
 ```
 
 The `Promise.race` function for `AbortSignal`.
@@ -61,4 +61,11 @@ The `Promise.race` function for `AbortSignal`.
 ### isAbortSignal
 ```ts
 function isAbortSignal(val: unknown): val is AbortSignal
+```
+
+### lastCallOnly
+```ts
+function lastCallOnly<T, Args extends unknown[]>(
+  fn: (...args: [...args: Args, signal: AbortSignal]) => PromiseLike<T>
+): (...args: [...args: Args, signal: AbortSignal | Falsy]) => Promise<T>
 ```

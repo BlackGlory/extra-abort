@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest'
 import { AbortSignal } from '@src/abort-signal.js'
 import { timeoutSignal } from '@src/timeout-signal.js'
 import { TIME_ERROR } from '@test/utils.js'

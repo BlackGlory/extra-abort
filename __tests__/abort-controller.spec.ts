@@ -1,3 +1,4 @@
+import { describe, test, expect } from 'vitest'
 import { AbortController } from '@src/abort-controller.js'
 import { AbortError } from '@src/abort-error.js'
 

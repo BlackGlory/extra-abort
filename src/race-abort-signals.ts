@@ -1,10 +1,10 @@
 import { Falsy } from 'justypes'
 import { AbortController } from './abort-controller.js'
 
-export function raceAbortSignals(abortSignals: Array<AbortSignal | Falsy>): AbortSignal {
+export function raceAbortSignals(signals: Array<AbortSignal | Falsy>): AbortSignal {
   const controller = new AbortController()
   const subscribedAbortSignals: AbortSignal[] = []
-  for (const signal of abortSignals) {
+  for (const signal of signals) {
     if (signal) {
       if (signal.aborted) {
         controller.abort()
