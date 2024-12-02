@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.10](https://github.com/BlackGlory/extra-abort/compare/v0.3.9...v0.3.10) (2024-12-02)
+
+
+### Features
+
+* improve `AbortError` ([b80356e](https://github.com/BlackGlory/extra-abort/commit/b80356e3d77da05fc854afc708a8b41cfb75904e))
+
 ### [0.3.9](https://github.com/BlackGlory/extra-abort/compare/v0.3.8...v0.3.9) (2023-12-30)
 
 
