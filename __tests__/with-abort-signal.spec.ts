@@ -1,7 +1,6 @@
 import { describe, test, it, expect, vi } from 'vitest'
 import { withAbortSignal } from '@src/with-abort-signal.js'
 import { AbortController } from '@src/abort-controller.js'
-import { AbortError } from '@src/abort-error.js'
 import { getErrorPromise } from 'return-style'
 import { passAsync } from '@blackglory/pass'
 
@@ -28,25 +27,27 @@ describe('withAbortSignal', () => {
 
   describe('signal isnt Falsy', () => {
     describe('signal already aborted', () => {
-      it('throws AbortError and fn is not called', async () => {
+      it('throws reason and fn is not called', async () => {
+        const customReason = new Error('custom reason')
         const fn = vi.fn(passAsync)
         const controller = new AbortController()
-        controller.abort()
+        controller.abort(customReason)
 
         const err = await getErrorPromise(withAbortSignal(controller.signal, fn))
 
-        expect(err).toBeInstanceOf(AbortError)
+        expect(err).toBe(customReason)
         expect(fn).not.toBeCalled()
       })
     })
 
     describe('signal is aborted after promise is resolved', () => {
       it('returns promise result', async () => {
+        const customReason = new Error('custom reason')
         const value = 1
         const fn = () => Promise.resolve(value)
         const controller = new AbortController()
 
-        setTimeout(() => controller.abort(), 500)
+        setTimeout(() => controller.abort(customReason), 500)
         const result = await withAbortSignal(controller.signal, fn)
 
         expect(result).toBe(value)
@@ -56,10 +57,11 @@ describe('withAbortSignal', () => {
     describe('signal is aborted after promise is rejected', () => {
       it('returns promise result', async () => {
         const customError = new Error('custom error')
+        const customReason = new Error('custom reason')
         const fn = () => Promise.reject(customError)
         const controller = new AbortController()
 
-        setTimeout(() => controller.abort(), 500)
+        setTimeout(() => controller.abort(customReason), 500)
         const err = await getErrorPromise(withAbortSignal(controller.signal, fn))
 
         expect(err).toBe(customError)
@@ -67,25 +69,27 @@ describe('withAbortSignal', () => {
     })
 
     describe('signal is aborted before promise is resolved', () => {
-      it('throws AbortError and fn is called', async () => {
+      it('throws reason and fn is called', async () => {
+        const customReason = new Error('custom reason')
         const fn = vi.fn(() => new Promise(resolve => setTimeout(resolve, 1000)))
         const controller = new AbortController()
 
-        setTimeout(() => controller.abort(), 500)
+        setTimeout(() => controller.abort(customReason), 500)
         const err = await getErrorPromise(withAbortSignal(controller.signal, fn))
 
-        expect(err).toBeInstanceOf(AbortError)
+        expect(err).toBe(customReason)
         expect(fn).toBeCalled()
       })
     })
 
     describe('signal is aborted after promise is rejected', () => {
-      it('throws AbortError and fn is called', async () => {
+      it('throws reason and fn is called', async () => {
         const customError = new Error('custom error')
+        const customReason = new Error('custom reason')
         const fn = vi.fn(() => new Promise((_, reject) => reject(customError)))
         const controller = new AbortController()
 
-        setTimeout(() => controller.abort(), 500)
+        setTimeout(() => controller.abort(customReason), 500)
         const err = await getErrorPromise(withAbortSignal(controller.signal, fn))
 
         expect(err).toBe(customError)

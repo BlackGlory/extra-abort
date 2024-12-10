@@ -1,24 +1,30 @@
 import { Falsy } from 'justypes'
 import { AbortController } from './abort-controller.js'
+import { SyncDestructor } from 'extra-defer'
 
 export function raceAbortSignals(signals: Array<AbortSignal | Falsy>): AbortSignal {
+  const destructor = new SyncDestructor()
   const controller = new AbortController()
-  const subscribedAbortSignals: AbortSignal[] = []
+
   for (const signal of signals) {
     if (signal) {
       if (signal.aborted) {
-        controller.abort()
+        controller.abort(signal.reason)
+
         break
       } else {
-        signal.addEventListener('abort', abort)
-        subscribedAbortSignals.push(signal)
+        const handler = createAbortHandler(signal)
+        signal.addEventListener('abort', handler)
+        destructor.defer(() => signal.removeEventListener('abort', handler))
       }
     }
   }
   return controller.signal
 
-  function abort() {
-    controller.abort()
-    subscribedAbortSignals.forEach(x => x.removeEventListener('abort', abort))
+  function createAbortHandler(signal: AbortSignal): () => void {
+    return () => {
+      controller.abort(signal.reason)
+      destructor.execute()
+    }
   }
 }

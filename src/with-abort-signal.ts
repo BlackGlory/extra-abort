@@ -1,5 +1,5 @@
 import { Falsy } from 'justypes'
-import { AbortError } from './abort-error.js'
+import { SyncDestructor } from 'extra-defer'
 
 /**
  * @throws {AbortError}
@@ -9,9 +9,18 @@ export async function withAbortSignal<T>(
 , fn: () => PromiseLike<T>
 ): Promise<T> {
   return new Promise<T>(async (resolve, reject) => {
+    const destructor = new SyncDestructor()
+
     if (signal) {
-      if (signal.aborted) return rejectByAbortSignal()
-      signal.addEventListener('abort', rejectByAbortSignal)
+      if (signal.aborted) {
+        rejectByAbortSignal(signal)
+
+        return
+      }
+
+      const handler = () => rejectByAbortSignal(signal)
+      signal.addEventListener('abort', handler)
+      destructor.defer(() => signal.removeEventListener('abort', handler))
     }
 
     try {
@@ -19,13 +28,11 @@ export async function withAbortSignal<T>(
     } catch (e) {
       reject(e)
     } finally {
-      if (signal) {
-        signal.removeEventListener('abort', rejectByAbortSignal)
-      }
+      destructor.execute()
     }
 
-    function rejectByAbortSignal() {
-      reject(new AbortError())
+    function rejectByAbortSignal(signal: AbortSignal): void {
+      reject(signal.reason)
     }
   })
 }
