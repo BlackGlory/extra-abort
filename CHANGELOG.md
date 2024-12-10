@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/BlackGlory/extra-abort/compare/v0.3.10...v0.4.0) (2024-12-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* Node.js v16 => v18.17.0
+
+### Features
+
+* add support for custom reasons ([b615bbb](https://github.com/BlackGlory/extra-abort/commit/b615bbb1c22b4b25795cd091b8685f94ac50ef63))
+
+
+* upgrade dependencies ([169c8c1](https://github.com/BlackGlory/extra-abort/commit/169c8c18ae9d8a99723029cef8b15f0df577c97c))
+
 ### [0.3.10](https://github.com/BlackGlory/extra-abort/compare/v0.3.9...v0.3.10) (2024-12-02)
 
 
