@@ -13,12 +13,12 @@ export async function withAbortSignal<T>(
 
     if (signal) {
       if (signal.aborted) {
-        rejectByAbortSignal(signal)
+        reject(signal.reason)
 
         return
       }
 
-      const handler = () => rejectByAbortSignal(signal)
+      const handler = () => reject(signal.reason)
       signal.addEventListener('abort', handler)
       destructor.defer(() => signal.removeEventListener('abort', handler))
     }
@@ -29,10 +29,6 @@ export async function withAbortSignal<T>(
       reject(e)
     } finally {
       destructor.execute()
-    }
-
-    function rejectByAbortSignal(signal: AbortSignal): void {
-      reject(signal.reason)
     }
   })
 }
