@@ -13,18 +13,16 @@ export function raceAbortSignals(signals: Array<AbortSignal | Falsy>): AbortSign
 
         break
       } else {
-        const handler = createAbortHandler(signal)
+        const handler = () => {
+          controller.abort(signal.reason)
+          destructor.execute()
+        }
+
         signal.addEventListener('abort', handler)
         destructor.defer(() => signal.removeEventListener('abort', handler))
       }
     }
   }
-  return controller.signal
 
-  function createAbortHandler(signal: AbortSignal): () => void {
-    return () => {
-      controller.abort(signal.reason)
-      destructor.execute()
-    }
-  }
+  return controller.signal
 }
