@@ -1,4 +1,5 @@
 import { AbortController } from './abort-controller.js'
+import { SyncDestructor } from 'extra-defer'
 
 export class LinkedAbortController extends AbortController {
   constructor(signal: AbortSignal) {
@@ -7,8 +8,14 @@ export class LinkedAbortController extends AbortController {
     if (signal.aborted) {
       this.abort(signal.reason)
     } else {
-      signal.addEventListener('abort', () => {
-        this.abort(signal.reason)
+      const destructor = new SyncDestructor()
+
+      const abortEventHandler = () => this.abort(signal.reason)
+      signal.addEventListener('abort', abortEventHandler, { once: true })
+      destructor.defer(() => signal.removeEventListener('abort', abortEventHandler))
+
+      this.signal.addEventListener('abort', () => {
+        destructor.execute()
       }, { once: true })
     }
   }
