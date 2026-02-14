@@ -6,6 +6,10 @@ export function raceAbortSignals(signals: Array<AbortSignal | Falsy>): AbortSign
   const destructor = new SyncDestructor()
   const controller = new AbortController()
 
+  controller.signal.addEventListener('abort', () => {
+    destructor.execute()
+  }, { once: true })
+
   for (const signal of signals) {
     if (signal) {
       if (signal.aborted) {
@@ -13,12 +17,8 @@ export function raceAbortSignals(signals: Array<AbortSignal | Falsy>): AbortSign
 
         break
       } else {
-        const handler = () => {
-          controller.abort(signal.reason)
-          destructor.execute()
-        }
-
-        signal.addEventListener('abort', handler)
+        const handler = () => controller.abort(signal.reason)
+        signal.addEventListener('abort', handler, { once: true })
         destructor.defer(() => signal.removeEventListener('abort', handler))
       }
     }

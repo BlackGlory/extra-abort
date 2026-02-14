@@ -10,9 +10,9 @@ export class LinkedAbortController extends AbortController {
     } else {
       const destructor = new SyncDestructor()
 
-      const abortEventHandler = () => this.abort(signal.reason)
-      signal.addEventListener('abort', abortEventHandler, { once: true })
-      destructor.defer(() => signal.removeEventListener('abort', abortEventHandler))
+      const handler = () => this.abort(signal.reason)
+      signal.addEventListener('abort', handler, { once: true })
+      destructor.defer(() => signal.removeEventListener('abort', handler))
 
       this.signal.addEventListener('abort', () => {
         destructor.execute()
