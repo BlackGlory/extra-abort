@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1](https://github.com/BlackGlory/extra-abort/compare/v0.4.0...v0.4.1) (2026-02-14)
+
+
+### Bug Fixes
+
+* **linked-abort-controller:** prevent memory leak ([a4e8992](https://github.com/BlackGlory/extra-abort/commit/a4e8992217f36c538ca0647994d778091eb2dce2))
+* **ract-abort-signals:** prevent memory leak ([67d069e](https://github.com/BlackGlory/extra-abort/commit/67d069ec40a1e249cae76f41bc776a941ca7c1a7))
+
 ## [0.4.0](https://github.com/BlackGlory/extra-abort/compare/v0.3.10...v0.4.0) (2024-12-10)
 
 
