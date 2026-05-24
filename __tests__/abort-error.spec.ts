@@ -3,6 +3,7 @@ import { CustomError } from '@blackglory/errors'
 import { AbortError } from '@src/abort-error.js'
 import { AbortError as AbortErrorFromExtraFetch } from 'node-fetch'
 import { waitForTimeout } from '@blackglory/wait-for'
+import { TimeoutError } from '@src/timeout-error.js'
 
 describe('AbortError', () => {
   test('AbortError instanceof Error', () => {
@@ -38,6 +39,12 @@ describe('AbortError', () => {
   })
 
   describe('TimeoutError instanceof AbortError', () => {
+    test('non-native TimeoutError', async () => {
+      const timeoutError = new TimeoutError()
+
+      expect(timeoutError).toBeInstanceOf(AbortError)
+    })
+
     test('native TimeoutError', async () => {
       const signal = AbortSignal.timeout(0)
       await waitForTimeout(100)

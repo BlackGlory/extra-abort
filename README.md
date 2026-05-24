@@ -15,9 +15,18 @@ The WHATWG `AbortController` and `AbortSignal`.
 class AbortError extends CustomError {}
 ```
 
-It is not the real `AbortError` of `fetch`,
+It is not the real `AbortError`,
 but you can do `err instance AbortError` like it is,
 because it can recognizes other errors that match the pattern of `AbortError`.
+
+### TimeoutError
+```ts
+class TimeoutError extends AbortError {}
+```
+
+It is not the real `TimeoutError`,
+but you can do `err instance TimeoutError` like it is,
+because it can recognizes other errors that match the pattern of `TimeoutError`.
 
 ### LinkedAbortController
 ```ts

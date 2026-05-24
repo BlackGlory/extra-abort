@@ -1,5 +1,6 @@
 export * from './abort-controller.js'
 export * from './abort-error.js'
+export * from './timeout-error.js'
 export * from './abort-signal.js'
 export * from './race-abort-signals.js'
 export * from './timeout-signal.js'

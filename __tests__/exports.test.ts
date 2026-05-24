@@ -4,6 +4,7 @@ import * as target from '@src/index.js'
 test('exports', () => {
   const expectedExports: string[] = [
     'AbortError'
+  , 'TimeoutError'
   , 'AbortController'
   , 'AbortSignal'
 

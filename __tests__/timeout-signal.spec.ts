@@ -3,6 +3,7 @@ import { AbortSignal } from '@src/abort-signal.js'
 import { timeoutSignal } from '@src/timeout-signal.js'
 import { TIME_ERROR } from '@test/utils.js'
 import { waitForEventTarget } from '@blackglory/wait-for'
+import { TimeoutError } from '@src/timeout-error.js'
 
 describe('timeoutSignal', () => {
   it('will abort after `ms` milliseconds', async () => {
@@ -13,5 +14,6 @@ describe('timeoutSignal', () => {
 
     expect(signal).toBeInstanceOf(AbortSignal)
     expect(Date.now() - start).toBeGreaterThanOrEqual(1000 - TIME_ERROR)
+    expect(signal.reason).toBeInstanceOf(TimeoutError)
   })
 })
