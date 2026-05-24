@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.0](https://github.com/BlackGlory/extra-abort/compare/v0.4.1...v0.5.0) (2026-05-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* Node.js v18 => Node.js v22
+
+### Features
+
+* add `TimeoutError` ([6323863](https://github.com/BlackGlory/extra-abort/commit/632386328f44184bf7400d709bcf80d7863fb263))
+
+
+* upgrade dependencies ([b84515b](https://github.com/BlackGlory/extra-abort/commit/b84515b6f95b56c3bced6ca71842370bc0d2dbf0))
+
 ### [0.4.1](https://github.com/BlackGlory/extra-abort/compare/v0.4.0...v0.4.1) (2026-02-14)
 
 
