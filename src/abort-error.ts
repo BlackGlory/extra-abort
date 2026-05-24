@@ -1,10 +1,13 @@
 import { getErrorNames, CustomError, isError } from '@blackglory/errors'
-import { some } from 'iterable-operator'
+import { some, concat } from 'iterable-operator'
 
 export class AbortError extends CustomError {
   static [Symbol.hasInstance](instance: unknown): boolean {
     if (isError(instance)) {
-      return some(getErrorNames(instance), name => {
+      // getErrorNames被设计成不信任Error的name属性, 因此这里需要手动加入name属性.
+      const errorNames = concat([instance.name], getErrorNames(instance))
+
+      return some(errorNames, name => {
         return name === 'AbortError'
             || (
                  name === 'DOMException' &&
