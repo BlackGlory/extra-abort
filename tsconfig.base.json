@@ -7,10 +7,10 @@
   , "esModuleInterop": true
   , "noUnusedLocals": true
   , "noUnusedParameters": true
-  , "baseUrl": "."
+  , "rootDir": "src"
   , "paths": {
-      "@src/*": ["src/*"]
-    , "@test/*": ["__tests__/*"]
+      "@src/*": ["./src/*"]
+    , "@test/*": ["./__tests__/*"]
     }
   , "plugins": [
       { "transform": "typescript-transform-paths" }
