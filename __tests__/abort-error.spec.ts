@@ -1,9 +1,8 @@
 import { describe, test, expect } from 'vitest'
 import { CustomError } from '@blackglory/errors'
 import { AbortError } from '@src/abort-error.js'
-import { AbortController } from '@src/abort-controller.js'
 import { AbortError as AbortErrorFromExtraFetch } from 'node-fetch'
-import { getError } from 'return-style'
+import { waitForTimeout } from '@blackglory/wait-for'
 
 describe('AbortError', () => {
   test('AbortError instanceof Error', () => {
@@ -26,18 +25,31 @@ describe('AbortError', () => {
     })
 
     test('native AbortError', () => {
-      const controller = new AbortController()
-      controller.abort()
-
-      const abortError = getError(() => controller.signal.throwIfAborted())
+      const abortError = AbortSignal.abort().reason
 
       expect(abortError).toBeInstanceOf(AbortError)
     })
 
-    test('AbortError from ExtraFetch instanceof AbortError ', () => {
+    test('AbortError from ExtraFetch instanceof AbortError', () => {
       const abortError = new AbortErrorFromExtraFetch()
 
       expect(abortError).toBeInstanceOf(AbortError)
     })
+  })
+
+  describe('TimeoutError instanceof AbortError', () => {
+    test('native TimeoutError', async () => {
+      const signal = AbortSignal.timeout(0)
+      await waitForTimeout(100)
+      const timeoutError = signal.reason
+
+      expect(timeoutError).toBeInstanceOf(AbortError)
+    })
+  })
+
+  test('not AbortError', () => {
+    const error = new CustomError()
+
+    expect(error).not.toBeInstanceOf(AbortError)
   })
 })
