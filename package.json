@@ -59,6 +59,7 @@
     "@blackglory/go": "^2.0.0",
     "@blackglory/pass": "^1.1.1",
     "extra-defer": "^0.3.1",
+    "extra-timers": "^0.3.1",
     "iterable-operator": "^6.0.0",
     "justypes": "^4.5.0"
   }
