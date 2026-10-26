@@ -15,7 +15,7 @@ describe('lastCallOnly', () => {
       const newFn = lastCallOnly(fn)
       const result = await newFn('foo', undefined)
 
-      expect(fn).toBeCalledTimes(1)
+      expect(fn).toHaveBeenCalledTimes(1)
       expect(result).toBe('foo')
     })
 
@@ -32,7 +32,7 @@ describe('lastCallOnly', () => {
         const result1 = await promise1
         const result2 = await promise2
 
-        expect(fn).toBeCalledTimes(1)
+        expect(fn).toHaveBeenCalledTimes(1)
         expect(fn.mock.calls[0][1].aborted).toBe(false)
         expect(result1.unwrapErr()).toBeInstanceOf(AbortError)
         expect(result2.unwrap()).toBe('bar')
@@ -51,7 +51,7 @@ describe('lastCallOnly', () => {
         const result1 = await promise1
         const result2 = await promise2
 
-        expect(fn).toBeCalledTimes(2)
+        expect(fn).toHaveBeenCalledTimes(2)
         expect(fn.mock.calls[0][1].aborted).toBe(true)
         expect(fn.mock.calls[1][1].aborted).toBe(false)
         expect(result1.unwrapErr()).toBeInstanceOf(AbortError)
@@ -72,7 +72,7 @@ describe('lastCallOnly', () => {
       const newFn = lastCallOnly(fn)
       const err = await getErrorPromise(newFn('foo', controller.signal))
 
-      expect(fn).toBeCalledTimes(0)
+      expect(fn).toHaveBeenCalledTimes(0)
       expect(err).toBeInstanceOf(AbortError)
     })
 
@@ -94,7 +94,7 @@ describe('lastCallOnly', () => {
         const result1 = await promise1
         const result2 = await promise2
 
-        expect(fn).toBeCalledTimes(0)
+        expect(fn).toHaveBeenCalledTimes(0)
         expect(result1.unwrapErr()).toBeInstanceOf(AbortError)
         expect(result2.unwrapErr()).toBeInstanceOf(AbortError)
       })
@@ -114,7 +114,7 @@ describe('lastCallOnly', () => {
         const result1 = await promise1
         const result2 = await promise2
 
-        expect(fn).toBeCalledTimes(1)
+        expect(fn).toHaveBeenCalledTimes(1)
         expect(fn.mock.calls[0][1].aborted).toBe(true)
         expect(result1.unwrapErr()).toBeInstanceOf(AbortError)
         expect(result2.unwrapErr()).toBeInstanceOf(AbortError)
@@ -134,7 +134,7 @@ describe('lastCallOnly', () => {
         const newFn = lastCallOnly(fn)
         const result = await newFn('foo', controller.signal)
 
-        expect(fn).toBeCalledTimes(1)
+        expect(fn).toHaveBeenCalledTimes(1)
         expect(fn.mock.calls[0][1].aborted).toBe(false)
         expect(result).toBe('foo')
       })
@@ -152,7 +152,7 @@ describe('lastCallOnly', () => {
         controller.abort()
         const err = await promise
 
-        expect(fn).toBeCalledTimes(1)
+        expect(fn).toHaveBeenCalledTimes(1)
         expect(fn.mock.calls[0][1].aborted).toBe(true)
         expect(err).toBeInstanceOf(AbortError)
       })
@@ -176,7 +176,7 @@ describe('lastCallOnly', () => {
           const result1 = await promise1
           const result2 = await promise2
 
-          expect(fn).toBeCalledTimes(1)
+          expect(fn).toHaveBeenCalledTimes(1)
           expect(fn.mock.calls[0][1].aborted).toBe(false)
           expect(result1.unwrapErr()).toBeInstanceOf(AbortError)
           expect(result2.unwrap()).toBe('bar')
@@ -197,7 +197,7 @@ describe('lastCallOnly', () => {
           const result1 = await promise1
           const result2 = await promise2
 
-          expect(fn).toBeCalledTimes(1)
+          expect(fn).toHaveBeenCalledTimes(1)
           expect(fn.mock.calls[0][1].aborted).toBe(true)
           expect(result1.unwrapErr()).toBeInstanceOf(AbortError)
           expect(result2.unwrapErr()).toBeInstanceOf(AbortError)
@@ -219,7 +219,7 @@ describe('lastCallOnly', () => {
           const result1 = await promise1
           const result2 = await promise2
 
-          expect(fn).toBeCalledTimes(2)
+          expect(fn).toHaveBeenCalledTimes(2)
           expect(fn.mock.calls[0][1].aborted).toBe(true)
           expect(fn.mock.calls[1][1].aborted).toBe(false)
           expect(result1.unwrapErr()).toBeInstanceOf(AbortError)
@@ -242,7 +242,7 @@ describe('lastCallOnly', () => {
           const result1 = await promise1
           const result2 = await promise2
 
-          expect(fn).toBeCalledTimes(2)
+          expect(fn).toHaveBeenCalledTimes(2)
           expect(fn.mock.calls[0][1].aborted).toBe(true)
           expect(fn.mock.calls[1][1].aborted).toBe(true)
           expect(result1.unwrapErr()).toBeInstanceOf(AbortError)
